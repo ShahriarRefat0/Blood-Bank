@@ -1,0 +1,37 @@
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "../../public/Components/Navbar";
+import Footer from "../../public/Components/Footer";
+import AuthProvider from "@/context/AuthContext";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Blood-Bank",
+  description: "Created by Shahriar Refat",
+  openGraph: {
+    images: ["/logo.png"], // <<< ONLY THIS LINE YOU NEED
+  },
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" data-theme="light">
+      <body>
+        <AuthProvider>
+        <Navbar></Navbar>
+        {children}
+        <Footer></Footer>
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
