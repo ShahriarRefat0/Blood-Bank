@@ -1,3 +1,5 @@
+"use client";
+
 import { MdBloodtype, MdLocalHospital, MdPeople } from "react-icons/md";
 
 export default function FeaturesSection() {

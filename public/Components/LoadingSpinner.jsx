@@ -1,3 +1,5 @@
+"use client";
+
 export default function LoadingSpinner() {
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
