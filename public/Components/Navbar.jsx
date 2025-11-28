@@ -17,23 +17,11 @@ export default function Navbar() {
   const router = useRouter();
 
   const handleLogOut = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will be logged out of your account.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, Logout",
-      cancelButtonText: "Cancel",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Perform logout
         signOutUser()
           .then(() => {
             Swal.fire({
               title: "Logged Out!",
-              text: "You have been logged out successfully.",
+              text: " Logged out successfully.",
               icon: "success",
               timer: 1500,
               showConfirmButton: false,
@@ -44,8 +32,8 @@ export default function Navbar() {
           .catch((e) => {
             Swal.fire("Error", e.message, "error");
           });
-      }
-    });
+      
+    
   };
 
   const links = (

@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import { MdBloodtype } from "react-icons/md";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "../../../../public/Components/LoadingSpinner";
 
 export default function DonorInfo() {
   const [error, setError] = useState("");
   const router = useRouter();
+  const [loading, setLoading] =useState(true)
 
   const {
     register,
@@ -52,6 +54,18 @@ export default function DonorInfo() {
       console.log("error submitting donor form", e);
     }
   };
+
+
+  useEffect(() => {
+    const timer = setTimeout(()=> setLoading(false), 1000)
+  return ()=> clearTimeout(timer)
+  }, [])
+
+if (loading) {
+  return <LoadingSpinner></LoadingSpinner>
+}
+
+
 
   return (
     <div className="min-h-screen bg-red-50 flex justify-center items-center px-4 py-10">

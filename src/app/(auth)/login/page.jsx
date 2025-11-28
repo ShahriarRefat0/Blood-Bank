@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "@/context/AuthContext";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function LoginPage() {
   const handleLogin = async (data) => {
     try {
       const res = await signInWithEmail(data.email, data.password);
-      console.log("login", res);
+      // console.log("login", res);
 
       Swal.fire({
         title: "Login Successful!",
@@ -34,7 +35,7 @@ export default function LoginPage() {
 
       router.push("/");
     } catch (e) {
-      console.log("login error", e.message);
+      // console.log("login error", e.message);
 
       Swal.fire({
         title: "Login Failed",
@@ -48,7 +49,7 @@ export default function LoginPage() {
   const handleGoogle = async () => {
     try {
       const res = await signInWithGoogle();
-      console.log("Google login", res.user);
+      // console.log("Google login", res.user);
 
       Swal.fire({
         title: "Login Successful!",
@@ -60,7 +61,7 @@ export default function LoginPage() {
 
       router.push("/");
     } catch (e) {
-      console.log(e.message);
+      // console.log(e.message);
 
       Swal.fire({
         title: "Google Login Failed",

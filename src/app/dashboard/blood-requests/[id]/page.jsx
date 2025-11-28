@@ -7,8 +7,9 @@ import { PiBuildingApartmentBold } from "react-icons/pi";
 import { FaPhoneAlt, FaHeart, FaExclamationCircle } from "react-icons/fa";
 import { FaUser, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
+
 export default async function RequestDetails({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   const client = await clientPromise;
   const db = client.db("blood-bankDB");
@@ -16,7 +17,7 @@ export default async function RequestDetails({ params }) {
 
   const req = await requests.findOne({ _id: new ObjectId(id) });
 
-  console.log(req);
+  // console.log(req);
 
   return (
     <div className="min-h-screen bg-red-50 flex justify-center py-10 px-4">

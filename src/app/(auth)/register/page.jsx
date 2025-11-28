@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "@/context/AuthContext";
 import { useForm } from "react-hook-form";
 import { redirect, useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,16 +17,32 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm();
 
-  const handleGoogle = () => {
-    signInWithGoogle()
-      .then((res) => {
-        //console.log(res.user);
+
+
+   const handleGoogle = async () => {
+      try {
+        const res = await signInWithGoogle();
+        // console.log("Google login", res.user);
+        Swal.fire({
+          title: "Login Successful!",
+          text: "Logged in with Google",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+  
         router.push("/");
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  };
+      } catch (e) {
+        // console.log(e.message);
+  
+        Swal.fire({
+          title: "Google Login Failed",
+          text: e.message,
+          icon: "error",
+          confirmButtonColor: "#d33",
+        });
+      }
+    };
 
   const handleCreateUer = async (data) => {
     try {
@@ -34,6 +51,13 @@ export default function RegisterPage() {
         displayName: data.name,
         photoURL: data.photoURL,
       });
+           Swal.fire({
+             title: "Registered !",
+             text: "Registration successful.",
+             icon: "success",
+             timer: 1500,
+             showConfirmButton: false,
+           });
       //console.log('user created:', res.user)
       router.push("/");
     } catch (e) {

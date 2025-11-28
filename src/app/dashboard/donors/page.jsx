@@ -19,9 +19,9 @@ export default function AvailableDonors() {
 
   // console.log(donors);
   return (
-    <div className="p-5 w-11/12 mx-auto my-8">
+    <div className="p-5 min-h-screen w-11/12 mx-auto my-8">
       <div>
-        <h1 className="text-3xl font-bold mb-5 text-center text-red-500">
+        <h1 className="text-3xl font-bold mb-8 text-center text-red-500">
           Available Donors.
         </h1>
       </div>

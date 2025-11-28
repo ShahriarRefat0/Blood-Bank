@@ -16,7 +16,7 @@ import {
 } from "react-icons/md";
 
 export default async function DonorDetails({ params }) {
-  const { id } =  params;
+  const { id } = await params;
 
   // Fetch donor from DB
   const client = await clientPromise;

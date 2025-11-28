@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import { MdBloodtype } from "react-icons/md";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "../../../../public/Components/LoadingSpinner";
 
 export default function AddBloodRequest() {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true)
   const router = useRouter();
   const {
     register,
@@ -51,6 +53,15 @@ export default function AddBloodRequest() {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(()=> setLoading(false), 1000)
+  return ()=> clearTimeout(timer)
+  }, [])
+
+if (loading) {
+  return <LoadingSpinner></LoadingSpinner>
+}
+
   return (
     <div className="min-h-screen bg-red-50 flex justify-center items-center px-4 py-10">
       <div className="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full border border-red-200">
@@ -86,7 +97,6 @@ export default function AddBloodRequest() {
             )}
           </div>
 
-          {/* Blood Group + Amount */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="font-semibold text-sm">Blood Group</label>
@@ -125,7 +135,7 @@ export default function AddBloodRequest() {
             </div>
           </div>
 
-          {/* Date Needed */}
+      
           <div>
             <label className="font-semibold text-sm">When Needed?</label>
             <input
@@ -138,7 +148,7 @@ export default function AddBloodRequest() {
             )}
           </div>
 
-          {/* Division + District */}
+        
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="font-semibold text-sm">Division</label>
@@ -185,7 +195,7 @@ export default function AddBloodRequest() {
             </div>
           </div>
 
-          {/* Upazila + Phone */}
+ 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="font-semibold text-sm">Upazila</label>
@@ -228,7 +238,7 @@ export default function AddBloodRequest() {
             </div>
           </div>
 
-          {/* Notes */}
+ 
           <div>
             <label className="font-semibold text-sm">Notes</label>
             <textarea
@@ -239,7 +249,7 @@ export default function AddBloodRequest() {
             ></textarea>
           </div>
 
-          {/* Submit */}
+     
           <button
             type="submit"
             className="btn bg-red-600 hover:bg-red-700 text-white w-full text-lg py-2 rounded-lg"
